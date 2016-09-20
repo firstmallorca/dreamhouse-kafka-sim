@@ -1,0 +1,16 @@
+{
+  "name": "dreamhouse-kafka-sim",
+  "engines": {
+    "node": "6.1.x"
+  },
+  "scripts": {
+    "dev": "node node_modules/nodemon/bin/nodemon.js app.js",
+    "start": "node app"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  },
+  "dependencies": {
+    "no-kafka": "git://github.com/crcastle/kafka.git#3.0"
+  }
+}
