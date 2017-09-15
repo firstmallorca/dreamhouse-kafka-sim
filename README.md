@@ -11,9 +11,3 @@ TODO
         set -o allexport
         source .env
         set +o allexport
-
-1. Create the Kafka certs:
-
-        ./env.sh
-
-

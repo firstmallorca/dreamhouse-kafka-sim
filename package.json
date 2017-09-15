@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "nforce": "^1.5.0",
-    "no-kafka": "git://github.com/crcastle/kafka.git#3.0"
+    "no-kafka": "3.2.2"
   }
 }

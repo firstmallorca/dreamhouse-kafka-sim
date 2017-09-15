@@ -3,18 +3,16 @@
 let Kafka = require('no-kafka'),
     salesforce = require('./server/salesforce'),
     interval = process.argv[2] ? parseInt(process.argv[2]) : 1000,
-    eventTypes = ["view", "favorite", "appointment"],
-    brokerUrls = process.env.KAFKA_URL.replace(/\+ssl/g, '');
+    eventTypes = ["view", "favorite", "appointment"];
 
 let getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-let producer = new Kafka.Producer({
-    connectionString: brokerUrls,
-    ssl: {
-        certFile: './client.crt',
-        keyFile: './client.key'
-    }
-});
+var kafkaPrefix = process.env.KAFKA_PREFIX;
+if (kafkaPrefix === undefined) {
+   kafkaPrefix = '';
+}
+
+let producer = new Kafka.Producer();
 
 producer.init();
 
@@ -32,7 +30,7 @@ salesforce.login()
             };
             console.log(data);
             producer.send({
-                topic: 'interactions',
+                topic: kafkaPrefix + 'interactions',
                 message: {
                     value: JSON.stringify(data)
                 }
